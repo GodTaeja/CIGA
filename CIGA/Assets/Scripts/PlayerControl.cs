@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Prime31;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -38,23 +39,27 @@ public class PlayerControl : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.W))
         {
 
-            whiteParent.SetActive(!whiteParent.activeSelf);
-            blackParent.SetActive(!blackParent.activeSelf);
-            if(m_isBlack)
+            if (GetComponent<CharacterController2D>().collisionState.below)
             {
-                m_anim.gameObject.SetActive(false);
-                this.GetComponent<SpriteRenderer>().enabled = true;
-                m_camera.backgroundColor = Color.white;
-                m_isBlack = false;
+                whiteParent.SetActive(!whiteParent.activeSelf);
+                blackParent.SetActive(!blackParent.activeSelf);
 
-            }
-            else
-            {
-                m_anim.gameObject.SetActive(true);
-                this.GetComponent<SpriteRenderer>().enabled = false;
-                m_camera.backgroundColor = Color.black;
-                m_isBlack = true;
+                if (m_isBlack)
+                {
+                    m_anim.gameObject.SetActive(false);
+                    this.GetComponent<SpriteRenderer>().enabled = true;
+                    m_camera.backgroundColor = Color.white;
+                    m_isBlack = false;
 
+                }
+                else
+                {
+                    m_anim.gameObject.SetActive(true);
+                    this.GetComponent<SpriteRenderer>().enabled = false;
+                    m_camera.backgroundColor = Color.black;
+                    m_isBlack = true;
+
+                }
             }
         }
         if(!isClick)
