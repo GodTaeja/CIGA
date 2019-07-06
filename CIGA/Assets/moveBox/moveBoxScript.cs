@@ -5,38 +5,47 @@ using UnityEngine;
 
 public class moveBoxScript : MonoBehaviour
 {
+    public BoxType boxType = BoxType.None;
+
+    #region 移动
     public List<OnePointToNextPoint> onePointToNextPoints = new List<OnePointToNextPoint>();
-
     private OnePointToNextPoint currentPoint;
-
-
-
-    public float moveLength;
-    public float moveSpeed;
-    public float oneMoveLifeTime;
-
-
-
-    private Vector3 startMovePos;
     private Vector3 goStartPos;
     private Vector3 currentPointPos;
-
-    private float time;
-
     private Vector3 currentVelocity;
+    #endregion
 
-
-    public void InitBoxData(float _moveLength, float _moveSpeed, float _oneMoveLifeTime, Vector3 _startMovenormalize)
-    {
-        moveLength = _moveLength;
-        moveSpeed = _moveSpeed;
-        oneMoveLifeTime = _oneMoveLifeTime;
-        startMovePos = _startMovenormalize * _moveLength;
-    }
+    #region 旋转
+    public Transform rootPoint;
+    public Transform objPoint;
+    #endregion
 
     private void Awake()
     {
         goStartPos = gameObject.transform.position;
+        SetBoxType(boxType);
+
+    }
+
+    public void SetBoxType(BoxType type)
+    {
+        boxType = type;
+
+        switch (type)
+        {
+            case BoxType.None:
+                break;
+            case BoxType.Move:
+                MoveType();
+                break;
+            case BoxType.Rotate:
+                RotateType();
+                break;
+        }
+    }
+
+    private void MoveType()
+    {
         currentPointPos = gameObject.transform.position;
         for (int i = 0; i < onePointToNextPoints.Count; i++)
         {
@@ -52,6 +61,11 @@ public class moveBoxScript : MonoBehaviour
         currentPoint = onePointToNextPoints[0];
     }
 
+    private void RotateType()
+    {
+
+    }
+
     private void Update()
     {
         //TODO Action
@@ -59,42 +73,27 @@ public class moveBoxScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MoveLine();
+        if (boxType == BoxType.Move)
+            MoveLine();
+        if (boxType == BoxType.Rotate)
+            RotateLine();
     }
 
     void MoveLine()
     {
-        //time += Time.fixedDeltaTime;
-
-        //if (time <= oneMoveLifeTime / 2)
-        //{
-        //    gameObject.transform.position = Vector3.SmoothDamp(gameObject.transform.position,
-        //   startMovePos, ref currentVelocity, oneMoveLifeTime / 2);
-        //}
-
-        //if (time > oneMoveLifeTime / 2 && time <= oneMoveLifeTime)
-        //{
-        //    gameObject.transform.position = Vector3.SmoothDamp(gameObject.transform.position,
-        //  goStartPos, ref currentVelocity, oneMoveLifeTime / 2);
-        //}
-
-        //if (time > oneMoveLifeTime)
-        //{
-        //    time = 0;
-        //}
-
         gameObject.transform.position = Vector3.SmoothDamp(gameObject.transform.position,
            currentPoint.moveTarget, ref currentVelocity, currentPoint.moveTime);
         if (Mathf.Abs(Vector3.Distance(gameObject.transform.position, currentPointPos + currentPoint.moveTarget)) <= 0.1f)
         {
             currentPoint = currentPoint.nextPoint;
         }
-
-
-
     }
 
-
+    void RotateLine()
+    {
+        gameObject.transform.position = objPoint.position;
+        rootPoint.transform.Rotate(rootPoint.forward, 2);
+    }
 
 
 
@@ -112,4 +111,10 @@ public class OnePointToNextPoint
     public bool isOnComplet;
 }
 
+public enum BoxType
+{
+    None,
+    Move,
+    Rotate,
+}
 
