@@ -82,7 +82,7 @@ public class moveBoxScript : MonoBehaviour
     void MoveLine()
     {
         gameObject.transform.position = Vector3.SmoothDamp(gameObject.transform.position,
-           currentPoint.moveTarget, ref currentVelocity, currentPoint.moveTime);
+          goStartPos+currentPoint.moveTarget, ref currentVelocity, currentPoint.moveTime);
         if (Mathf.Abs(Vector3.Distance(gameObject.transform.position, currentPointPos + currentPoint.moveTarget)) <= 0.1f)
         {
             currentPoint = currentPoint.nextPoint;
