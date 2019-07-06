@@ -13,7 +13,7 @@ public class DarkEffect : MonoBehaviour
         public Transform target;
 
         [SerializeField]
-        public int radius;
+        public float radius;
 
         public Vector3 GetScreenPosition(Camera cam)
         {
@@ -38,7 +38,7 @@ public class DarkEffect : MonoBehaviour
     Vector4 _tmpVt;
     Vector3 _tmpPos;
     int _tmpScreenHeight;
-    public void setRoleDis(int val)
+    public void setRoleDis(float val)
     {
         _items[0].radius = val;
     }
