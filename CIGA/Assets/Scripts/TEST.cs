@@ -18,19 +18,19 @@ public class TEST : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if(Input.GetKeyDown(KeyCode.Q))
         {
             m_darkEffect.setRoleDis(m_roleMixMaskDis);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.W))
         {
             m_darkEffect.setRoleDis(m_roleMaxMaskDis);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.E))
         {
             m_darkEffect.addLightItem(m_tarGm.transform, 50);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.R))
         {
             m_darkEffect.removeLightItem(m_tarGm.transform);
         }

@@ -20,8 +20,7 @@ public class SmoothFollow : MonoBehaviour
 	{
 		transform = gameObject.transform;
 		_playerController = target.GetComponent<CharacterController2D>();
-
-    }
+	}
 	
 	
 	void LateUpdate()
