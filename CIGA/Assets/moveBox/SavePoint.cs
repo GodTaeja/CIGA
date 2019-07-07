@@ -13,7 +13,7 @@ public class SavePoint : MonoBehaviour
         SavePointManager.Instance.AddSavePoint(this);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         isSave = true;
         GetComponent<Animator>().SetBool("isSave", true);

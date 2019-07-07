@@ -63,7 +63,11 @@ public class DemoScene : MonoBehaviour
 	// the Update loop contains a very simple example of moving the character around and controlling the animation
 	void Update()
 	{
-		if( _controller.isGrounded )
+
+        if (_controller.gameObject.transform.position.y < -10.0f)
+            this.transform.position= SavePointManager.Instance.ReLoadPoint();
+
+        if ( _controller.isGrounded )
 			_velocity.y = 0;
         
 		if( Input.GetKey( KeyCode.D ) )
