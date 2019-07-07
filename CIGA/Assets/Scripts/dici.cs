@@ -47,7 +47,7 @@ public class dici : MonoBehaviour
             if(m_InitIndex!=0)
             {
                 if (CharacterController2D.Instance.gameObject.transform.position.y < -10.0f)
-                    this.transform.position = SavePointManager.Instance.ReLoadPoint();
+                    CharacterController2D.Instance.gameObject.transform.position = SavePointManager.Instance.ReLoadPoint();
             }
         }
     }
