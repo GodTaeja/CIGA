@@ -29,7 +29,7 @@ public class SavePointManager : MonoBehaviour {
         SavePoint tempPoint = savePoints[0];
         for (int i = 0; i < savePoints.Count; i++)
         {
-            if(savePoints[i].pointIndex>tempPoint.pointIndex && savePoints[i].isSave)
+            if(savePoints[i].pointIndex != tempPoint.pointIndex && savePoints[i].isSave)
             {
                 tempPoint = savePoints[i];
             }
