@@ -149,9 +149,9 @@ public class CharacterController2D : MonoBehaviour
 
 	const float kSkinWidthFloatFudgeFactor = 0.001f;
 
-	#endregion
+        #endregion
 
-
+        public static CharacterController2D Instance;
 	/// <summary>
 	/// holder for our raycast origin corners (TR, TL, BR, BL)
 	/// </summary>
@@ -181,6 +181,7 @@ public class CharacterController2D : MonoBehaviour
 
 	void Awake()
 	{
+            Instance = this;
 		// add our one-way platforms to our normal platform mask so that we can land on them from above
 		platformMask |= oneWayPlatformMask;
 
