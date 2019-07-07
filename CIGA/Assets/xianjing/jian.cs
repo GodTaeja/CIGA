@@ -16,4 +16,17 @@ public class jian : MonoBehaviour
         this.transform.localPosition = m_moveVec;
     }
 
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            if (m_InitIndex != 0)
+            {
+                if (CharacterController2D.Instance.gameObject.transform.position.y < -10.0f)
+                    this.transform.position = SavePointManager.Instance.ReLoadPoint();
+            }
+        }
+    }
+
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Prime31;
 
 public class dici : MonoBehaviour
 {
@@ -37,5 +38,17 @@ public class dici : MonoBehaviour
         }
         
         this.GetComponent<SpriteRenderer>().sprite = m_sprite[m_InitIndex];
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag=="Player")
+        {
+            if(m_InitIndex!=0)
+            {
+                if (CharacterController2D.Instance.gameObject.transform.position.y < -10.0f)
+                    this.transform.position = SavePointManager.Instance.ReLoadPoint();
+            }
+        }
     }
 }
