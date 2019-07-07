@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Prime31;
-
+using UnityEngine.Events;
 public class PlayerControl : MonoBehaviour
 {
-
+    public UnityEvent m_tiaoyue = new UnityEvent();
     public DarkEffect m_darkEffect;
     private int m_minCir = 80;
     private int m_maxCir = 180;
@@ -38,7 +38,7 @@ public class PlayerControl : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.W))
         {
-
+            m_tiaoyue.Invoke();
             if (GetComponent<CharacterController2D>().collisionState.below)
             {
                 whiteParent.SetActive(!whiteParent.activeSelf);
