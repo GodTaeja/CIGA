@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Prime31;
 
 public class jian : MonoBehaviour
 {
@@ -21,11 +22,10 @@ public class jian : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (m_InitIndex != 0)
-            {
-                if (CharacterController2D.Instance.gameObject.transform.position.y < -10.0f)
-                    this.transform.position = SavePointManager.Instance.ReLoadPoint();
-            }
+
+            if (CharacterController2D.Instance.gameObject.transform.position.y < -10.0f)
+                this.transform.position = SavePointManager.Instance.ReLoadPoint();
+            
         }
     }
 
